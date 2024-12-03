@@ -9,6 +9,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-blue-200 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-black-900 dark:text-black-100">
+                    @if(session('success'))
+                        <div class="bg-green-100 text-green-700 p-4 rounded mb-4">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <h3 class="text-xl font-semibold mb-6">Escolha a tatuagem que você deseja fazer!</h3>
 
                     <!-- Lista de tatuagens -->
@@ -19,6 +24,7 @@
                             <h4 class="text-lg font-semibold text-gray-800">Tatuagem Tribal</h4>
                             <p class="text-gray-600">A tatuagem tribal com detalhes únicos e personalizados.</p>
                             <p class="text-lg font-bold text-gray-800 mt-2">R$ 300,00</p>
+                            <!-- Rota de agendamento para a tatuagem Tribal -->
                             <a href="{{ route('agendar.tatuagem.form', ['tatuagem' => 'tribal']) }}" class="mt-4 inline-block text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg">Agendar</a>
                         </div>
 
@@ -28,6 +34,7 @@
                             <h4 class="text-lg font-semibold text-gray-800">Tatuagem Floral</h4>
                             <p class="text-gray-600">Um design delicado com flores e folhas, para quem ama a natureza.</p>
                             <p class="text-lg font-bold text-gray-800 mt-2">R$ 350,00</p>
+                            <!-- Rota de agendamento para a tatuagem Floral -->
                             <a href="{{ route('agendar.tatuagem.form', ['tatuagem' => 'floral']) }}" class="mt-4 inline-block text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg">Agendar</a>
                         </div>
 
@@ -37,6 +44,7 @@
                             <h4 class="text-lg font-semibold text-gray-800">Tatuagem Geométrica</h4>
                             <p class="text-gray-600">Para quem gosta de linhas e formas geométricas modernas.</p>
                             <p class="text-lg font-bold text-gray-800 mt-2">R$ 400,00</p>
+                            <!-- Rota de agendamento para a tatuagem Geométrica -->
                             <a href="{{ route('agendar.tatuagem.form', ['tatuagem' => 'geometrica']) }}" class="mt-4 inline-block text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg">Agendar</a>
                         </div>
 
@@ -46,6 +54,7 @@
                             <h4 class="text-lg font-semibold text-gray-800">Tatuagem Retrô</h4>
                             <p class="text-gray-600">Uma tatuagem com um estilo retrô, trazendo elementos vintage.</p>
                             <p class="text-lg font-bold text-gray-800 mt-2">R$ 250,00</p>
+                            <!-- Rota de agendamento para a tatuagem Retrô -->
                             <a href="{{ route('agendar.tatuagem.form', ['tatuagem' => 'retro']) }}" class="mt-4 inline-block text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg">Agendar</a>
                         </div>
 
@@ -55,6 +64,7 @@
                             <h4 class="text-lg font-semibold text-gray-800">Tatuagem Realista</h4>
                             <p class="text-gray-600">Uma tatuagem com detalhes realistas, ideal para retratos e figuras.</p>
                             <p class="text-lg font-bold text-gray-800 mt-2">R$ 500,00</p>
+                            <!-- Rota de agendamento para a tatuagem Realista -->
                             <a href="{{ route('agendar.tatuagem.form', ['tatuagem' => 'realista']) }}" class="mt-4 inline-block text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg">Agendar</a>
                         </div>
                     </div>

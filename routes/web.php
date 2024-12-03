@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TatuagemController;
+use App\Http\Controllers\AgendamentoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,10 +30,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::delete('/usuarios/{id}', [UserController::class, 'destroy'])->name('admin.users.delete'); 
 });
 
+Route::get('/agendar/tatuagem/{tatuagem}', [TatuagemController::class, 'showForm'])->name('agendar.tatuagem.form');
 
+Route::get('/agendar', [TatuagemController::class, 'create'])->name('agendar');
+Route::post('/agendar', [TatuagemController::class, 'store'])->name('agendar.store');
 
-Route::get('/agendar-tatuagem', [TatuagemController::class, 'create'])->name('agendar.tatuagem.form');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/meus-agendamentos', [AgendamentoController::class, 'index'])->name('agendamentos.index');
+});
 
-Route::post('/agendar-tatuagem', [TatuagemController::class, 'store'])->name('agendar.tatuagem');
 
 require __DIR__.'/auth.php';

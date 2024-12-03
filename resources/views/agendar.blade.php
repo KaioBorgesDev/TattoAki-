@@ -1,76 +1,43 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Agende sua Tatuagem:') }}
-        </h2>
-    </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-blue-200 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-black-900 dark:text-black-100">
-                    <h3 class="text-xl font-semibold mb-6">Preencha os dados abaixo para agendar sua tatuagem</h3>
-
-                    <!-- Exibindo a mensagem de sucesso, se houver -->
-                    @if(session('success'))
-                        <div class="mb-4 text-green-500">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                    <h3 class="text-xl font-semibold mb-6">Agende a tatuagem: {{ $tatuagem['nome'] }}</h3>
 
                     <!-- Formulário de agendamento -->
-                    <form action="{{ route('agendar.tatuagem') }}" method="POST" class="space-y-6">
-                        @csrf
-                        
-                        <!-- Seleção de Tatuagem -->
-                        <div>
-                            <label for="tatuagem" class="block text-lg font-medium text-gray-700">Escolha a Tatuagem</label>
-                            <select id="tatuagem" name="tatuagem" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                                <option value="tribal">Tatuagem Tribal</option>
-                                <option value="floral">Tatuagem Floral</option>
-                                <option value="geometrica">Tatuagem Geométrica</option>
-                                <option value="retro">Tatuagem Retrô</option>
-                                <option value="realista">Tatuagem Realista</option>
-                            </select>
-                        </div>
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
+                        <img src="https://via.placeholder.com/300x300" alt="{{ $tatuagem['nome'] }}" class="w-full h-48 object-cover rounded-lg mb-4">
+                        <h4 class="text-lg font-semibold text-gray-800">{{ $tatuagem['nome'] }}</h4>
+                        <p class="text-gray-600">{{ $tatuagem['descricao'] }}</p>
+                        <p class="text-lg font-bold text-gray-800 mt-2">R$ {{ number_format($tatuagem['preco'], 2, ',', '.') }}</p>
 
-                        <!-- Data do Agendamento -->
-                        <div>
-                            <label for="data" class="block text-lg font-medium text-gray-700">Data do Agendamento</label>
-                            <input type="date" id="data" name="data" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
-                        </div>
+                        <!-- Formulário de agendamento -->
+                        <form action="{{ route('agendar.store') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="tatuagem" value="{{ $tatuagem['nome'] }}">
+                            <div class="mt-4">
+                                <label for="data" class="block">Data</label>
+                                <input type="date" name="data" id="data" class="w-full p-2 border border-gray-300 rounded mt-1" required>
 
-                        <!-- Hora do Agendamento -->
-                        <div>
-                            <label for="hora" class="block text-lg font-medium text-gray-700">Hora do Agendamento</label>
-                            <input type="time" id="hora" name="hora" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
-                        </div>
+                                <label for="hora" class="block mt-4">Hora</label>
+                                <input type="time" name="hora" id="hora" class="w-full p-2 border border-gray-300 rounded mt-1" required>
+                            </div>
 
-                        <!-- Nome do Cliente -->
-                        <div>
-                            <label for="nome" class="block text-lg font-medium text-gray-700">Seu Nome</label>
-                            <input type="text" id="nome" name="nome" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
-                        </div>
+                            <div class="mt-4">
+                                <label for="nome" class="block">Seu nome</label>
+                                <input type="text" name="nome" id="nome" class="w-full p-2 border border-gray-300 rounded mt-1" required>
 
-                        <!-- Email do Cliente -->
-                        <div>
-                            <label for="email" class="block text-lg font-medium text-gray-700">Seu Email</label>
-                            <input type="email" id="email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
-                        </div>
+                                <label for="email" class="block mt-4">E-mail</label>
+                                <input type="email" name="email" id="email" class="w-full p-2 border border-gray-300 rounded mt-1" required>
 
-                        <!-- Telefone do Cliente -->
-                        <div>
-                            <label for="telefone" class="block text-lg font-medium text-gray-700">Seu Telefone</label>
-                            <input type="tel" id="telefone" name="telefone" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" required>
-                        </div>
+                                <label for="telefone" class="block mt-4">Telefone</label>
+                                <input type="text" name="telefone" id="telefone" class="w-full p-2 border border-gray-300 rounded mt-1" required>
+                            </div>
 
-                        <!-- Botão de Submissão -->
-                        <div class="mt-6">
-                            <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
-                                Agendar Tatuagem
-                            </button>
-                        </div>
-                    </form>
+                            <button type="submit" class="mt-4 inline-block text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg">Agendar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
