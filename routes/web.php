@@ -20,5 +20,16 @@ Route::middleware('auth')->group(function () {
 Route::get('/aboutus', function (){
     return view('about-us');
 })->name('aboutus');
+use App\Http\Controllers\Admin\UserController;
+
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    // Rota para listar os usuários com nome 'admin.usuarios'
+    Route::get('/usuarios', [UserController::class, 'index'])->name('admin.usuarios');
+
+    // Rota para atualizar um usuário
+    Route::put('/usuarios/{id}', [UserController::class, 'update']);
+});
+
 
 require __DIR__.'/auth.php';

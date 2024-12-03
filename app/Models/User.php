@@ -17,10 +17,20 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    use HasFactory, Notifiable;
+
+    // Definições de atributos e relacionamentos podem ser feitas aqui
     protected $fillable = [
         'name',
         'email',
         'password',
+        'is_admin', // Caso tenha adicionado esse campo
+    ];
+
+    // Se houver alguma configuração adicional, como casting de campos
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'is_admin' => 'boolean', // Para garantir que seja um valor booleano
     ];
 
     /**
