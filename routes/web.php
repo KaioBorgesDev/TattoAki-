@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TatuagemController;
-use App\Http\Controllers\AgendamentoController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AgendamentoTatuagemController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,7 +37,7 @@ Route::get('/agendar', [TatuagemController::class, 'create'])->name('agendar');
 Route::post('/agendar', [TatuagemController::class, 'store'])->name('agendar.store');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/meus-agendamentos', [AgendamentoController::class, 'index'])->name('agendamentos.index');
+    Route::resource('agendamentos', AgendamentoTatuagemController::class);
 });
 
 

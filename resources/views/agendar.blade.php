@@ -26,11 +26,10 @@
 
                             <div class="mt-4">
                                 <label for="nome" class="block">Seu nome</label>
-                                <input type="text" name="nome" id="nome" class="w-full p-2 border border-gray-300 rounded mt-1" required>
-
+                                <input type="text" name="nome" id="nome" value="{{ Auth::user()->name }}" class="w-full p-2 border border-gray-300 rounded mt-1" required readonly>
+                                
                                 <label for="email" class="block mt-4">E-mail</label>
-                                <input type="email" name="email" id="email" class="w-full p-2 border border-gray-300 rounded mt-1" required>
-
+                                <input type="email" name="email" id="email" value="{{ Auth::user()->email }}" class="w-full p-2 border border-gray-300 rounded mt-1" required readonly>
                                 <label for="telefone" class="block mt-4">Telefone</label>
                                 <input type="text" name="telefone" id="telefone" class="w-full p-2 border border-gray-300 rounded mt-1" required>
                             </div>

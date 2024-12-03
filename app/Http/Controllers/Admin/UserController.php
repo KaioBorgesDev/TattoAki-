@@ -49,6 +49,6 @@ class UserController extends Controller
         ]);
 
         // Redireciona de volta para a lista de usuários com uma mensagem de sucesso
-        return redirect()->route('admin.usuarios')->with('success', 'Usuário atualizado com sucesso!');
+        return redirect()->route('admin.users.index')->with('success', 'Usuário atualizado com sucesso!');
     }
 }
