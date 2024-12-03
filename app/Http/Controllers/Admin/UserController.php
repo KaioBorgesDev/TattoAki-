@@ -20,6 +20,18 @@ class UserController extends Controller
         return redirect('/')->with('error', 'Você não tem permissão para acessar esta página.');
     }
 
+    public function destroy($id)
+    {
+        // Encontrar o usuário pelo ID
+        $user = User::findOrFail($id);
+
+        // Excluir o usuário
+        $user->delete();
+
+        // Redirecionar de volta para a lista de usuários com uma mensagem de sucesso
+        return redirect()->route('admin.users.index')->with('success', 'Usuário excluído com sucesso.');
+    }
+    
     // Função para atualizar um usuário
     public function update($id, Request $request)
     {
