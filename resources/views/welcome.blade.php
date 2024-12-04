@@ -170,7 +170,7 @@
                 </a>
             </div>
             <p class="mt-8 text-base leading-6 text-center text-gray-400">
-                © 2024 TattoAki, Inc. Todos direitos reservados.
+                © 2024 TattoAki, Inc. Todos direitos reservados a <br><b>Kaio Borges e Felipe Silua.
             </p>
         </div>
     </section>

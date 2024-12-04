@@ -37,6 +37,13 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        <!-- Verifica se o usuário é admin -->
+                        @if(auth()->user()->is_admin == 1)
+                            <x-dropdown-link :href="route('admin.users.index')" class="mt-2">
+                                {{ __('Admin - Usuários') }}
+                            </x-dropdown-link>
+                        @endif
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
